@@ -1,8 +1,9 @@
 import requests
+import os
 from send_email import send_email
 
-TOPIC = "(hiphop OR rap)"
-API_KEY = "1d91efc79c4d429fa402017e62be6ef0"
+TOPIC = "(hiphop OR rap OR hip hop)"
+API_KEY = os.environ.get("NEWS_API")
 URL = ("https://newsapi.org/v2/everything?"
        f"q={TOPIC}&"
        "sortBy=publishedAt&"
@@ -20,7 +21,10 @@ content = request.json()
 
 # Message header for the email
 message = f"""\
-Subject: News Update, {date[0:16]}
+Subject: Hip Hop & Rap News Update, {date[0:16]}
+
+Tägliche automatisierte Update-Mail mit News aus der Hip Hop und Rap Welt #808
+
 
 """
 
