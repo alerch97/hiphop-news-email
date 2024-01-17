@@ -3,12 +3,13 @@ import os
 from send_email import send_email
 
 TOPIC = "(hiphop OR rap OR hip hop)"
+LANGUAGE = "de"
 API_KEY = os.environ.get("NEWS_API")
 URL = ("https://newsapi.org/v2/everything?"
        f"q={TOPIC}&"
        "sortBy=publishedAt&"
        f"apiKey={API_KEY}&"
-       "language=de")
+       f"language={LANGUAGE}")
 
 # Make request
 request = requests.get(URL)
@@ -31,7 +32,6 @@ Tägliche automatisierte Update-Mail mit News aus der Hip Hop und Rap Welt #808
 # Access the article titles and description + add to message
 for article in content["articles"]:
     if article["title"] is not None:
-        print(article["title"])
         message = (message + f"{article['title']}" + "\n"
                    + f"{article['description']}"
                    + "\n" + f"{article['url']}" + 2*"\n")
